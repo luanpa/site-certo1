@@ -2,6 +2,8 @@ const express = require("express");
 //novo
 const exphbs = require('express-handlebars');
 const path = require('path');
+const Sequelize = require('sequelize');
+const OP = Sequelize.Op;
 ////
 const app = express();
 const db = require("./models");
@@ -40,15 +42,35 @@ db.sequelize.sync().then(()=>{
 });  
 
 app.get('/',(req, res) => {
+    
+    let search = req.query.job;
+    let query = '%'+search+'%'; //php => php macanismo de busca
 
-    db.todoE.findAll({order: [
+    if(!search) {
+         db.todoE.findAll({order: [
         ['createdAt','DESC']
     ]})
     .then(todoE => {
        res.render ('index',{
             todoE
         });
-    });
+    })
+    .catch(err => console.log(err));
+    } else {
+        db.todoE.findAll({
+            where: {title: {[OP.like]: query}},
+            order: [
+            ['createdAt','DESC']
+        ]})
+        .then(todoE => {
+           res.render ('index',{
+                todoE, search
+            });
+        })
+        .catch(err => console.log(err));
+    }
+
+   
 
 });
  
