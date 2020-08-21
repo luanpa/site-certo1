@@ -242,8 +242,18 @@
 
 }
 
-/* home  responsivo*/
+/*  responsivo*/
+@media (max-width: 410px){
 
+
+/* nav*/
+
+#navberNav{
+
+    text-align: center;
+}
+
+/*  home*/
 #top-container {
     padding: 50px;
     padding-top: 100px;
@@ -308,4 +318,5 @@
 }
 #form-box button{
     width: 100%;
+}
 }
