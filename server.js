@@ -22,4 +22,17 @@ db.sequelize.sync().then(()=>{
     app.listen(PORT, () =>{
         console.log(`listen on: http://localhost:${PORT}`);
     });
-});  
+}); 
+
+app.get('/',(req, res) => {
+
+    db.todoE.findAll({order: [
+        ['createdAt','DESC']
+    ]})
+    .then(todoE => {
+       res.render ('index',{
+            todoE
+        });
+    });
+
+});
