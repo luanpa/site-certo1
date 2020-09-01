@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 
 const apiRoutes = require('./routes/apiRoutes');
+const { dirname } = require("path");
 app.use('/api', apiRoutes);
 
 
@@ -74,3 +75,7 @@ app.get('/',(req, res) => {
 
 });
  
+// politica e privacidade//
+app.get("/test4", function(req, res){
+    res.render('test');
+})
