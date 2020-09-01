@@ -76,6 +76,6 @@ app.get('/',(req, res) => {
 });
  
 // politica e privacidade//
-app.get("/test4", function(req, res){
+app.get("/privacidade", function(req, res){
     res.render('test');
 })
